@@ -160,7 +160,7 @@ class Mobilyws
     /*
     * Send SMS with unique template
     */
-    function sendSMSWK($numbers, $msg, $msgKey, $timeSend=0, $dateSend=0, $deleteKey=0)
+    public static function sendSMSWK($numbers, $msg, $msgKey, $timeSend=0, $dateSend=0, $deleteKey=0)
     {
         static::run();
         $url = "http://www.mobily.ws/api/msgSendWK.php";
@@ -183,7 +183,7 @@ class Mobilyws
     /*
      * Delete scheduled SMS
      */
-    function deleteSMS()
+    public static function deleteSMS()
     {
         static::run();
         $url = "http://www.mobily.ws/api/deleteMsg.php";
@@ -200,8 +200,10 @@ class Mobilyws
         return $result;
     }
 
-//دالة طلب إسم مرسل (جوال) بإستخدام CURL
-    function addSender($sender)
+    /*
+     * Request sender name
+     */
+    public static function addSender($sender)
     {
         static::run();
         $url = "http://www.mobily.ws/api/addSender.php";
@@ -220,7 +222,7 @@ class Mobilyws
     /*
      * Activate Sender name
      */
-    function activeSender($senderId, $activeKey)
+    public static function activeSender($senderId, $activeKey)
     {
         static::run();
         $url = "http://www.mobily.ws/api/activeSender.php";
@@ -239,7 +241,7 @@ class Mobilyws
     /*
      * Check Sender name status
      */
-    function checkSender($senderId)
+    public static function checkSender($senderId)
     {
         static::run();
         $url = "http://www.mobily.ws/api/checkSender.php";
@@ -258,7 +260,7 @@ class Mobilyws
     /*
      * Request Sender name alpha
      */
-    function addAlphaSender($sender)
+    public static function addAlphaSender($sender)
     {
         static::run();
         $url = "http://www.mobily.ws/api/addAlphaSender.php";
@@ -277,7 +279,7 @@ class Mobilyws
     /*
      * Check Sender name requested alpha
      */
-    function checkAlphasSender()
+    public static function checkAlphasSender()
     {
         static::run();
         $url = "http://www.mobily.ws/api/checkAlphasSender.php";
@@ -292,15 +294,6 @@ class Mobilyws
         }
         return $result;
     }
-
-
-
-
-
-
-
-
-
 
     public static function format_numbers($numbers)
     {
