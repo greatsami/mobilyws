@@ -1,0 +1,19 @@
+{
+    "name": "greatsami/mobilyws",
+    "description": "Send SMS using Mobily.ws",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sami Mansour",
+            "email": "samiman.net@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Greatsami\\Mobilyws\\": "src/"
+        }
+    }
+}
