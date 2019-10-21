@@ -33,7 +33,7 @@ class Mobilyws
         static::$viewResult         = null;
     }
 
-    public static function SendRequest($url, $stringToPost = null)
+    public static function SendRequest($url, $stringToPost = '')
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -41,7 +41,7 @@ class Mobilyws
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
         curl_setopt($ch, CURLOPT_POST, 1);
-        if (!is_null($stringToPost)){
+        if (!empty($stringToPost)){
             curl_setopt($ch, CURLOPT_POSTFIELDS, $stringToPost);
         }
         $result = curl_exec($ch);
@@ -79,9 +79,9 @@ class Mobilyws
         $numbers = self::format_numbers($numbers);
 
         if (!empty(static::$apiKey)) {
-            $stringToPost = "mobile=" . static::$userAccount . "&password=" . static::$passAccount . "&numbers=" . $numbers . "&sender=" . $sender . "&msg=" . $msg . "&timeSend=" . $timeSend . "&dateSend=" . $dateSend . "&applicationType=" . $applicationType . "&domainName=" . $domainName . "&msgId=" . static::$MsgID . "&deleteKey=" . $deleteKey . "&lang=3";
-        } else {
             $stringToPost = "apiKey=".static::$apiKey."&numbers=".$numbers."&sender=".$sender."&msg=".$msg."&timeSend=".$timeSend."&dateSend=".$dateSend."&applicationType=".$applicationType."&domainName=".$domainName."&msgId=".static::$MsgID."&deleteKey=".$deleteKey."&lang=3";
+        } else {
+            $stringToPost = "mobile=" . static::$userAccount . "&password=" . static::$passAccount . "&numbers=" . $numbers . "&sender=" . $sender . "&msg=" . $msg . "&timeSend=" . $timeSend . "&dateSend=" . $dateSend . "&applicationType=" . $applicationType . "&domainName=" . $domainName . "&msgId=" . static::$MsgID . "&deleteKey=" . $deleteKey . "&lang=3";
         }
 
         $result = static::SendRequest($url, $stringToPost);
@@ -114,7 +114,7 @@ class Mobilyws
     {
         static::run();
         $url = "http://www.mobily.ws/api/changePassword.php";
-        if(!empty(static::$userAccount) && empty(static::$passAccount)) {
+        if(!empty(static::$apiKey)) {
             $stringToPost = "apiKey=".static::$apiKey."&newPassword=".$newPassAccount;
         } else {
             $stringToPost = "mobile=".static::$userAccount."&password=".static::$passAccount."&newPassword=".$newPassAccount;
@@ -134,7 +134,7 @@ class Mobilyws
     {
         static::run();
         $url = "http://www.mobily.ws/api/forgetPassword.php";
-        if(!empty(static::$userAccount) && empty(static::$passAccount)) {
+        if(!empty(static::$apiKey)) {
             $stringToPost = "apiKey=".static::$apiKey."&type=".$sendType;
         } else {
             $stringToPost = "mobile=".static::$userAccount."&type=".$sendType;
@@ -159,7 +159,7 @@ class Mobilyws
         $domainName = $_SERVER['SERVER_NAME'];
         $numbers = self::format_numbers($numbers);
 
-        if(!empty(static::$userAccount) && empty(static::$passAccount)) {
+        if(!empty(static::$apiKey)) {
             $stringToPost = "apiKey=".static::$apiKey."&numbers=".$numbers."&sender=".$sender."&msg=".$msg."&msgKey=".$msgKey."&timeSend=".$timeSend."&dateSend=".$dateSend."&applicationType=".$applicationType."&domainName=".$domainName."&msgId=".static::$MsgID."&deleteKey=".$deleteKey."&lang=3";
         } else {
             $stringToPost = "mobile=".static::$userAccount."&password=".static::$passAccount."&numbers=".$numbers."&sender=".$sender."&msg=".$msg."&msgKey=".$msgKey."&timeSend=".$timeSend."&dateSend=".$dateSend."&applicationType=".$applicationType."&domainName=".$domainName."&msgId=".static::$MsgID."&deleteKey=".$deleteKey."&lang=3";
@@ -178,7 +178,7 @@ class Mobilyws
     {
         static::run();
         $url = "http://www.mobily.ws/api/deleteMsg.php";
-        if(!empty(static::$userAccount) && empty(static::$passAccount)) {
+        if(!empty(static::$apiKey)) {
             $stringToPost = "apiKey=".static::$apiKey."&deleteKey=".static::$deleteKey;
         } else {
             $stringToPost = "mobile=".static::$userAccount."&password=".static::$passAccount."&deleteKey=".static::$deleteKey;
@@ -198,7 +198,7 @@ class Mobilyws
     {
         static::run();
         $url = "http://www.mobily.ws/api/addSender.php";
-        if(!empty(static::$userAccount) && empty(static::$passAccount)) {
+        if(!empty(static::$apiKey)) {
             $stringToPost = "apiKey=".static::$apiKey."&sender=".$sender;
         } else {
             $stringToPost = "mobile=".static::$userAccount."&password=".static::$passAccount."&sender=".$sender;
@@ -217,7 +217,7 @@ class Mobilyws
     {
         static::run();
         $url = "http://www.mobily.ws/api/activeSender.php";
-        if(!empty(static::$userAccount) && empty(static::$passAccount)) {
+        if(!empty(static::$apiKey)) {
             $stringToPost = "apiKey=".static::$apiKey."&senderId=".$senderId."&activeKey=".$activeKey;
         } else {
             $stringToPost = "mobile=".static::$userAccount."&password=".static::$passAccount."&senderId=".$senderId."&activeKey=".$activeKey;
@@ -236,7 +236,7 @@ class Mobilyws
     {
         static::run();
         $url = "http://www.mobily.ws/api/checkSender.php";
-        if(!empty(static::$userAccount) && empty(static::$passAccount)) {
+        if(!empty(static::$apiKey)) {
             $stringToPost = "apiKey=".static::$apiKey."&senderId=".$senderId;
         } else {
             $stringToPost = "mobile=".static::$userAccount."&password=".static::$passAccount."&senderId=".$senderId;
@@ -255,7 +255,7 @@ class Mobilyws
     {
         static::run();
         $url = "http://www.mobily.ws/api/addAlphaSender.php";
-        if(!empty(static::$userAccount) && empty(static::$passAccount)) {
+        if(!empty(static::$apiKey)) {
             $stringToPost = "apiKey=".static::$apiKey."&sender=".$sender;
         } else {
             $stringToPost = "mobile=".static::$userAccount."&password=".static::$passAccount."&sender=".$sender;
@@ -274,7 +274,7 @@ class Mobilyws
     {
         static::run();
         $url = "http://www.mobily.ws/api/checkAlphasSender.php";
-        if(!empty(static::$userAccount) && empty(static::$passAccount)) {
+        if(!empty(static::$apiKey)) {
             $stringToPost = "apiKey=".static::$apiKey."&sender=".$sender;
         } else {
             $stringToPost = "mobile=".static::$userAccount."&password=".static::$passAccount."&sender=".$sender;
