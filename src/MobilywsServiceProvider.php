@@ -17,6 +17,8 @@ class MobilywsServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'mobilyws');
         if(!file_exists(resource_path('lang/en/mobilyws.php'))) {
             $this->publishes([__DIR__ . '/resources/lang/en' => resource_path('lang/en')]);
+        }
+        if(!file_exists(resource_path('lang/ar/mobilyws.php'))) {
             $this->publishes([__DIR__ . '/resources/lang/ar' => resource_path('lang/ar')]);
         }
 
