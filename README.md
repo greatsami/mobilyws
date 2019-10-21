@@ -1,4 +1,10 @@
 # Mobily.ws Package
+=======================
+[![GitHub issues](https://img.shields.io/github/issues/greatsami/mobilyws)](https://github.com/greatsami/mobilyws/issues)
+[![GitHub forks](https://img.shields.io/github/forks/greatsami/mobilyws)](https://github.com/greatsami/mobilyws/network)
+[![GitHub stars](https://img.shields.io/github/stars/greatsami/mobilyws)](https://github.com/greatsami/mobilyws/stargazers)
+![Packagist (custom server)](https://img.shields.io/packagist/dt/greatsami/mobilyws?server=https%3A%2F%2Fpackagist.org)
+
 It a package to Send SMS messages, improved from [AbdullahObaid Laravel-SMS](https://github.com/AbdullahObaid/Laravel-SMS) with Laravel 6.* compatibility.
 Gateway is support [Mobily.ws](https://www.mobily.ws/) only.   
 

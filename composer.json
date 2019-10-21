@@ -3,10 +3,19 @@
     "description": "Send SMS using Mobily.ws",
     "type": "library",
     "license": "MIT",
+    "keywords": [
+        "framework",
+        "laravel",
+        "web service",
+        "curl",
+        "mobily.ws",
+        "sms"
+    ],
     "authors": [
         {
             "name": "Sami Mansour",
-            "email": "samiman.net@gmail.com"
+            "email": "samiman.net@gmail.com",
+            "homepage": "https://github.com/greatsami"
         }
     ],
     "minimum-stability": "dev",
