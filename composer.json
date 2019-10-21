@@ -15,5 +15,15 @@
         "psr-4": {
             "Greatsami\\Mobilyws\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Greatsami\\Mobilyws\\MobilywsServiceProvider"
+            ],
+            "aliases": {
+                "Mobilyws": "Greatsami\\Mobilyws\\MobilywsFacade"
+            }
+        }
     }
 }

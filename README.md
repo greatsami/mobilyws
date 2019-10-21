@@ -19,11 +19,7 @@ Install the package with composer:
 
 `composer require greatsami/mobilyws`
 
-In config/app.php add in aliases array:
-
-`'Mobilyws' => Greatsami\Mobilyws\MobilywsFacade::class,`
-
-Note: You don\'t need to register it in service provider, It is auto-discover package.
+Note: You don\'t need to register it in service provider or aliases, It is auto-discover package.
 
 #### config
 Publish the configuration file by running the following Artisan command.
