@@ -77,7 +77,7 @@ class Mobilyws
         $sender = urlencode(static::$sender);
         $domainName = $_SERVER['SERVER_NAME'];
         $numbers = self::format_numbers($numbers);
-
+        // dd(static::$userAccount, static::$passAccount, static::$apiKey, static::$sender, static::$MsgID, static::$timeSend, static::$dateSend, static::$deleteKey, static::$resultType, static::$viewResult, $url, $applicationType, $sender, $domainName, $numbers);
         if (!empty(static::$apiKey)) {
             $stringToPost = "apiKey=".static::$apiKey."&numbers=".$numbers."&sender=".$sender."&msg=".$msg."&timeSend=".$timeSend."&dateSend=".$dateSend."&applicationType=".$applicationType."&domainName=".$domainName."&msgId=".static::$MsgID."&deleteKey=".$deleteKey."&lang=3";
         } else {
@@ -294,7 +294,7 @@ class Mobilyws
             $numbers_array = [];
             foreach ($numbers as $number) {
                 $n = self::format_number($number);
-                Arr::add($numbers_array, $n);
+                array_push($numbers_array, $n);
             }
             return implode(',', $numbers_array);
         }

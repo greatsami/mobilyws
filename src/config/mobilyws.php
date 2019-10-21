@@ -4,8 +4,8 @@ return [
 
     'mobile'            => '',
     'password'          => '',
-    'apiKey'            => 'ecde5423542f4a764707bf769ad219e9',
-    'sender'            => 'Festavo',
+    'apiKey'            => '9d76fee097b9aaccd8aca25807a13135',
+    'sender'            => 'Bluebees',
     'MsgID'             => rand(1,99999),
     'timeSend'          => 0,
     'dateSend'          => 0,
