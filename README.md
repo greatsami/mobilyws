@@ -25,7 +25,7 @@ Note: You don\'t need to register it in service provider or aliases, It is auto-
 Publish the configuration file by running the following Artisan command.
 
 ```php
-$ php artisan vendor:publish --provider="greatsami\mobilyws\MobilywsServiceProvider"
+$ php artisan vendor:publish --provider="Greatsami\Mobilyws\MobilywsServiceProvider"
 ```
 Finally, you need to edit the configuration file at  `config/mobilyws.php` with your own information.
 
