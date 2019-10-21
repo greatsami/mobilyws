@@ -77,6 +77,7 @@ class Mobilyws
         $applicationType = "68";
         $sender = urlencode(static::$sender);
         $domainName = $_SERVER['SERVER_NAME'];
+        $numbers = self::format_numbers($numbers);
 
         if (!empty(static::$apiKey)) {
             $stringToPost = "mobile=" . static::$userAccount . "&password=" . static::$passAccount . "&numbers=" . $numbers . "&sender=" . $sender . "&msg=" . $msg . "&timeSend=" . $timeSend . "&dateSend=" . $dateSend . "&applicationType=" . $applicationType . "&domainName=" . $domainName . "&msgId=" . static::$MsgID . "&deleteKey=" . $deleteKey . "&lang=3";
@@ -134,7 +135,11 @@ class Mobilyws
     {
         static::run();
         $url = "http://www.mobily.ws/api/forgetPassword.php";
-        $stringToPost = "mobile=".static::$userAccount."&type=".$sendType;
+        if(!empty(static::$userAccount) && empty(static::$passAccount)) {
+            $stringToPost = "apiKey=".static::$apiKey."&type=".$sendType;
+        } else {
+            $stringToPost = "mobile=".static::$userAccount."&type=".$sendType;
+        }
         $result = static::SendRequest($url, $stringToPost);
         if (static::$resultType == 1) {
             $result = trans('mobilyws::mobilyws.arrayForgetPassword'.$result);
@@ -142,20 +147,6 @@ class Mobilyws
         return $result;
     }
 
-    /*
-     * Forget Password API
-     */
-    public static function forgetPasswordApiKey($sendType)
-    {
-        static::run();
-        $url = "http://www.mobily.ws/api/forgetPassword.php";
-        $stringToPost = "apiKey=".static::$apiKey."&type=".$sendType;
-        $result = static::SendRequest($url, $stringToPost);
-        if (static::$resultType == 1) {
-            $result = trans('mobilyws::mobilyws.arrayForgetPassword'.$result);
-        }
-        return $result;
-    }
 
     /*
     * Send SMS with unique template
@@ -167,9 +158,10 @@ class Mobilyws
         $applicationType = "68";
         $sender = urlencode(static::$sender);
         $domainName = $_SERVER['SERVER_NAME'];
+        $numbers = self::format_numbers($numbers);
 
         if(!empty(static::$userAccount) && empty(static::$passAccount)) {
-            $stringToPost = "apiKey=".static::$userAccount."&numbers=".$numbers."&sender=".$sender."&msg=".$msg."&msgKey=".$msgKey."&timeSend=".$timeSend."&dateSend=".$dateSend."&applicationType=".$applicationType."&domainName=".$domainName."&msgId=".static::$MsgID."&deleteKey=".$deleteKey."&lang=3";
+            $stringToPost = "apiKey=".static::$apiKey."&numbers=".$numbers."&sender=".$sender."&msg=".$msg."&msgKey=".$msgKey."&timeSend=".$timeSend."&dateSend=".$dateSend."&applicationType=".$applicationType."&domainName=".$domainName."&msgId=".static::$MsgID."&deleteKey=".$deleteKey."&lang=3";
         } else {
             $stringToPost = "mobile=".static::$userAccount."&password=".static::$passAccount."&numbers=".$numbers."&sender=".$sender."&msg=".$msg."&msgKey=".$msgKey."&timeSend=".$timeSend."&dateSend=".$dateSend."&applicationType=".$applicationType."&domainName=".$domainName."&msgId=".static::$MsgID."&deleteKey=".$deleteKey."&lang=3";
         }
@@ -279,14 +271,14 @@ class Mobilyws
     /*
      * Check Sender name requested alpha
      */
-    public static function checkAlphasSender()
+    public static function checkAlphasSender($sender)
     {
         static::run();
         $url = "http://www.mobily.ws/api/checkAlphasSender.php";
         if(!empty(static::$userAccount) && empty(static::$passAccount)) {
-            $stringToPost = "apiKey=".static::$apiKey;
+            $stringToPost = "apiKey=".static::$apiKey."&sender=".$sender;
         } else {
-            $stringToPost = "mobile=".static::$userAccount."&password=".static::$passAccount;
+            $stringToPost = "mobile=".static::$userAccount."&password=".static::$passAccount."&sender=".$sender;
         }
         $result = static::SendRequest($url, $stringToPost);
         if (static::$resultType == 1) {
@@ -302,7 +294,7 @@ class Mobilyws
         } else {
             $numbers_array = [];
             foreach ($numbers as $number) {
-                $n = self::format_numbers($number);
+                $n = self::format_number($number);
                 Arr::add($numbers_array, $n);
             }
             return implode(',', $numbers_array);
