@@ -4,7 +4,6 @@ namespace Greatsami\Mobilyws;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use phpDocumentor\Reflection\Types\Static_;
 
 class Mobilyws
 {
